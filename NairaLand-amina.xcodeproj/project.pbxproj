@@ -15,6 +15,7 @@
 		27930C771C39F0990087E819 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27930C751C39F0990087E819 /* LaunchScreen.storyboard */; };
 		27930C821C39F0990087E819 /* NairaLand_aminaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27930C811C39F0990087E819 /* NairaLand_aminaTests.swift */; };
 		27930C8D1C39F09A0087E819 /* NairaLand_aminaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27930C8C1C39F09A0087E819 /* NairaLand_aminaUITests.swift */; };
+		92F53EC71C3B0E3B00EE8E6F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F53EC61C3B0E3B00EE8E6F /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		27930C881C39F09A0087E819 /* NairaLand-aminaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NairaLand-aminaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27930C8C1C39F09A0087E819 /* NairaLand_aminaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NairaLand_aminaUITests.swift; sourceTree = "<group>"; };
 		27930C8E1C39F09A0087E819 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92F53EC61C3B0E3B00EE8E6F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				27930C731C39F0990087E819 /* Assets.xcassets */,
 				27930C751C39F0990087E819 /* LaunchScreen.storyboard */,
 				27930C781C39F0990087E819 /* Info.plist */,
+				92F53EC61C3B0E3B00EE8E6F /* Post.swift */,
 			);
 			path = "NairaLand-amina";
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				27930C6F1C39F0990087E819 /* DetailViewController.swift in Sources */,
 				27930C6D1C39F0990087E819 /* MasterViewController.swift in Sources */,
 				27930C6B1C39F0990087E819 /* AppDelegate.swift in Sources */,
+				92F53EC71C3B0E3B00EE8E6F /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +493,7 @@
 				27930C931C39F09A0087E819 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27930C941C39F09A0087E819 /* Build configuration list for PBXNativeTarget "NairaLand-aminaTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +502,7 @@
 				27930C961C39F09A0087E819 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27930C971C39F09A0087E819 /* Build configuration list for PBXNativeTarget "NairaLand-aminaUITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +511,7 @@
 				27930C991C39F09A0087E819 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

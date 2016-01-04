@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import WebKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    //@IBOutlet weak var detailWebView: UIWebView!
+    private var detailWebView: WKWebView?
 
     var detailItem: AnyObject? {
         didSet {
@@ -23,23 +24,33 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
+            let detailArray = detail as! Array<String>
+            print("loading \(detailArray[0])")
+            //let url: NSURL =
+            //if let url = NSURL(string: "http://google.com") {
+            if let url = NSURL(string: detailArray[0]) {
+                print("Creating request \(detailArray[0])")
+                let req = NSURLRequest(URL: url)
+                detailWebView?.loadRequest(req)
             }
         }
     }
 
+    
+    
+    override func loadView() {
+        detailWebView = WKWebView()
+        
+        //If you want to implement the delegate
+        //webView?.navigationDelegate = self
+        
+        view = detailWebView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
+        configureView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
