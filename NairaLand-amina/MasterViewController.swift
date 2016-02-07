@@ -80,16 +80,31 @@ class MasterViewController: UITableViewController {
         return cell
     }
     
+    func decodeHtml(encodedString: String) -> String {
+        let encodedData = encodedString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let attributedOptions : [String: AnyObject] = [
+            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+            NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
+        ]
+        
+        do{
+            let attributedString = try NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
+            return attributedString.string
+        } catch let error as NSError{
+            print("Unable to decode string \"\(encodedString)\": \(error)")
+        }
+        return encodedString// The Weeknd ‘King Of The Fall’
+    }
+
+    
     func getPosts(){
         let url = NSURL(string: "http://www.nairaland.com/links")
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (data, response, error) in
             let page: NSString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
             let lines = page.componentsSeparatedByString("<table summary=\"links\">")[1].componentsSeparatedByString("<br>")
-            //var regex = "href=\"(?P<link>.*)\">\\s*<b>(?P<title>.*)</b>\\s*</a>\\s*at\\s*<b>(?P<time>[^<]+)</b>(\\s*On\\s*<b>(?P<date>.*)</b>)?"
             let regex = "href=\"(.*)\">\\s*<b>(.*)</b>\\s*</a>\\s*at\\s*<b>([^<]+)</b>(\\s*On\\s*<b>(.*)</b>)?$"
-            //var regex = /hello/
-            for text in lines{
+            for text in lines {
                 
                 
                 do {
@@ -107,17 +122,15 @@ class MasterViewController: UITableViewController {
                             
                             print("doing range \(ii) \(element.rangeAtIndex(ii))")
                             
-                            matches.append(nsString.substringWithRange(element.rangeAtIndex(ii)))
+                            matches.append(self.decodeHtml(nsString.substringWithRange(element.rangeAtIndex(ii))))
                         }
                     }
                     
-                    if !matches.isEmpty{
+                    if !matches.isEmpty {
                         print("adding matches \(matches)")
                         self.objects.append(matches)
                         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                        
-                        
                     }
                 } catch let error as NSError{
                     print("Invalid Selection. \(error)")
