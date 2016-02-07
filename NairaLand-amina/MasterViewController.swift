@@ -76,7 +76,10 @@ class MasterViewController: UITableViewController {
         //let object = objects[indexPath.row] as! NSDate
         print("added \(objects[indexPath.row][1])")
         cell.textLabel!.text = "\(objects[indexPath.row][1])"
-        
+        cell.textLabel!.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        cell.textLabel!.font = UIFont(name:"Helvetica", size:18.0)
+        cell.textLabel!.numberOfLines = 0;
+        cell.textLabel!.sizeToFit()
         return cell
     }
     
