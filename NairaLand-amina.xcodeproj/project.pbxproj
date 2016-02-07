@@ -199,7 +199,7 @@
 				TargetAttributes = {
 					27930C661C39F0990087E819 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 3F3Z7936J5;
+						DevelopmentTeam = UL86TY6SV8;
 					};
 					27930C7C1C39F0990087E819 = {
 						CreatedOnToolsVersion = 7.2;
@@ -408,9 +408,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "NairaLand-amina/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aetoslabs.NairaLand-amina";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aetoslabs.nairaland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -419,9 +421,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "NairaLand-amina/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aetoslabs.NairaLand-amina";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aetoslabs.nairaland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
