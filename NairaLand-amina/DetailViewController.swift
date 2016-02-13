@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import iAd
 
-class DetailViewController: UIViewController, ADBannerViewDelegate {
+class DetailViewController: UIViewController, ADBannerViewDelegate, WKNavigationDelegate {
 
     //@IBOutlet weak var detailWebView: UIWebView!
     private var detailWebView: WKWebView!
@@ -51,6 +51,7 @@ class DetailViewController: UIViewController, ADBannerViewDelegate {
         
         if detailWebView == nil {
             detailWebView = WKWebView()
+            detailWebView.navigationDelegate = self
         }else{
             print("webview exists")
         }
@@ -84,6 +85,15 @@ class DetailViewController: UIViewController, ADBannerViewDelegate {
         
         view.addSubview(adBannerView!)
         view.setNeedsDisplay()
+    }
+    
+    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    }
+    
+    
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
 
 }
