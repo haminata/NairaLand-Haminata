@@ -10,15 +10,17 @@ import UIKit
 import WebKit
 import iAd
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, ADBannerViewDelegate {
 
     //@IBOutlet weak var detailWebView: UIWebView!
-    private var detailWebView: WKWebView?
-    @IBOutlet var adBannerView: ADBannerView!
+    private var detailWebView: WKWebView!
+    private var adBannerView: ADBannerView!
+    private var request: NSURLRequest!
 
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
+            print("configuring view")
             self.configureView()
         }
     }
@@ -28,30 +30,60 @@ class DetailViewController: UIViewController {
         if let detail = self.detailItem {
             let detailArray = detail as! Array<String>
             print("loading \(detailArray[0])")
-            //let url: NSURL =
-            //if let url = NSURL(string: "http://google.com") {
             if let url = NSURL(string: detailArray[0]) {
                 print("Creating request \(detailArray[0])")
-                let req = NSURLRequest(URL: url)
-                detailWebView?.loadRequest(req)
+                request = NSURLRequest(URL: url)
+                print("got results...\(detailWebView)")
+                if detailWebView != nil {
+                    detailWebView?.loadRequest(request)
+                }else{
+                    print("webview not ready")
+                }
+                
+                view.setNeedsDisplay()
             }
         }
     }
 
-    
-    
-    override func loadView() {
-        detailWebView = WKWebView()
+    override func viewDidLoad() {
+        print("loading view")
+        super.viewDidLoad()
         
-        //If you want to implement the delegate
-        //webView?.navigationDelegate = self
+        if detailWebView == nil {
+            detailWebView = WKWebView()
+        }else{
+            print("webview exists")
+        }
         
-        view = detailWebView
+        
+        
+        //view = detailWebView
+        view.addSubview(detailWebView!)
+        configureView()
+        
+        adBannerView = ADBannerView()
+        adBannerView.delegate = self
+        adBannerView.hidden = true
+        
+        self.canDisplayBannerAds = true
+        if request != nil {
+            print("setting request")
+            detailWebView?.loadRequest(request)
+        }
+        detailWebView.frame = view.frame
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureView()
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        return true
+    }
+    
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        print("showing ad \(view.subviews)")
+        adBannerView.hidden = false
+        
+        view.addSubview(adBannerView!)
+        view.setNeedsDisplay()
     }
 
 }
