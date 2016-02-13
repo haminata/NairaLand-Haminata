@@ -8,11 +8,13 @@
 
 import UIKit
 import WebKit
+import iAd
 
 class DetailViewController: UIViewController {
 
     //@IBOutlet weak var detailWebView: UIWebView!
     private var detailWebView: WKWebView?
+    @IBOutlet var adBannerView: ADBannerView!
 
     var detailItem: AnyObject? {
         didSet {
